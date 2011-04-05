@@ -24,20 +24,6 @@ module Arel
         end
       end
 
-      describe 'group_concat' do
-        it 'makes a group_concat node' do
-          node = SqlLiteral.new('*').group_concat
-          viz = Visitors::ToSql.new Table.engine
-          viz.accept(node).must_be_like %{ GROUP_CONCAT(*, ',') }
-        end
-
-        it 'makes a distinct node' do
-          node = SqlLiteral.new('*').group_concat SqlLiteral.new("'/'")
-          viz = Visitors::ToSql.new Table.engine
-          viz.accept(node).must_be_like %{ GROUP_CONCAT(*, '/') }
-        end
-      end
-
       describe 'equality' do
         it 'makes an equality node' do
           node = SqlLiteral.new('foo').eq(1)

@@ -134,12 +134,6 @@ module Arel
         }.join(', ')})#{o.alias ? " AS #{visit o.alias}" : ''}"
       end
 
-      def visit_Arel_Nodes_GroupConcat o
-        "GROUP_CONCAT(#{o.expressions.map { |x|
-          visit x
-        }.join(', ')}, #{visit o.joiner})#{o.alias ? " AS #{visit o.alias}" : ''}"
-      end
-
       def visit_Arel_Nodes_Sum o
         "SUM(#{o.expressions.map { |x|
           visit x }.join(', ')})#{o.alias ? " AS #{visit o.alias}" : ''}"
