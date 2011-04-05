@@ -43,6 +43,11 @@ module Arel
         visit_edge o, "distinct"
       end
 
+      def visit_Arel_Nodes_GroupConcat o
+        visit_edge o, "expressions"
+        visit_edge o, "joiner"
+      end
+
       def visit_Arel_Nodes_Values o
         visit_edge o, "expressions"
       end

@@ -28,6 +28,7 @@ require 'arel/nodes/and'
 # We should make Function a Unary node and deprecate the use of "aliaz"
 require 'arel/nodes/function'
 require 'arel/nodes/count'
+require 'arel/nodes/group_concat'
 require 'arel/nodes/values'
 require 'arel/nodes/named_function'
 

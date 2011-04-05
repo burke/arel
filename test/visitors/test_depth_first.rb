@@ -74,6 +74,12 @@ module Arel
         assert_equal [:a, :c, :b, count], @collector.calls
       end
 
+      def test_group_concat
+        group_concat = Nodes::GroupConcat.new :a, :b, :c
+        @visitor.accept group_concat
+        assert_equal [:a, :c, :b, group_concat], @collector.calls
+      end
+
       def test_inner_join
         join = Nodes::InnerJoin.new :a, :b
         @visitor.accept join

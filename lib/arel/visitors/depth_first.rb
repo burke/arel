@@ -49,6 +49,12 @@ module Arel
         visit o.distinct
       end
 
+      def visit_Arel_Nodes_GroupConcat o
+        visit o.expressions
+        visit o.alias
+        visit o.joiner
+      end
+
       def nary o
         o.children.each { |child| visit child }
       end
