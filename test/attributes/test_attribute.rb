@@ -324,6 +324,20 @@ module Arel
         end
       end
 
+      describe '#group_concat' do
+        it 'should return a group_concat node' do
+          relation = Table.new(:users)
+          relation[:id].group_concat.must_be_kind_of Nodes::GroupConcat
+        end
+
+        it 'should take a distinct param' do
+          relation = Table.new(:users)
+          group_concat = relation[:id].group_concat(nil)
+          group_concat.must_be_kind_of Nodes::GroupConcat
+          group_concat.joiner.must_be_like("','")
+        end
+      end
+
       describe '#eq' do
         it 'should return an equality node' do
           attribute = Attribute.new nil, nil, nil
