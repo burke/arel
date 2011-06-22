@@ -46,6 +46,17 @@ module Arel
         visit o.right
         visit o.constraint
       end
+      
+      def visit_Arel_Nodes_GroupConcat o
+        visit o.expressions
+        visit o.alias
+        visit o.joiner
+      end
+
+      def nary o
+        o.children.each { |child| visit child }
+      end
+      
       alias :visit_Arel_Nodes_InnerJoin :join
       alias :visit_Arel_Nodes_OuterJoin :join
 

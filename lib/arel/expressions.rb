@@ -4,6 +4,10 @@ module Arel
       Nodes::Count.new [self], distinct
     end
 
+    def group_concat joiner = nil
+      Nodes::GroupConcat.new [self], joiner
+    end
+
     def sum
       Nodes::Sum.new [self], Nodes::SqlLiteral.new('sum_id')
     end
